@@ -1,0 +1,27 @@
+PASOS PARA USAR
+
+1) Crear proyecto en Supabase.
+2) Ir a SQL Editor y ejecutar el archivo supabase.sql.
+3) Ir a Project Settings > API y copiar:
+   - Project URL
+   - anon public key
+4) Abrir config.js y pegar esos datos.
+5) Subir estos archivos a GitHub Pages.
+
+USUARIOS INICIALES
+admin / Admin2026
+tec1 / Tec1001
+tec2 / Tec1002
+tec3 / Tec1003
+tec4 / Tec1004
+tec5 / Tec1005
+tec6 / Tec1006
+tec7 / Tec1007
+tec8 / Tec1008
+tec9 / Tec1009
+
+FUNCIONES
+- Admin: crea reclamos, ve pendientes/resueltos, marca resuelto y elimina.
+- Técnico: ve pendientes/resueltos y marca resuelto.
+- Se guarda último ingreso por usuario.
+- Se guarda quién marcó un reclamo como resuelto y la fecha.

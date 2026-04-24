@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caraguatay NET - Reclamos</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <main id="loginView" class="login-page">
+  <section class="login-card login-pro">
+    <div class="login-logo-wrap">
+      <img src="logo.jpg" class="logo" alt="Caraguatay NET" />
+    </div>
+
+    <div class="login-badge">Acceso interno</div>
+
+    <h1>Sistema de Reclamos</h1>
+    <p>Ingresá con tu usuario y contraseña para gestionar los reclamos.</p>
+
+    <div class="input-group">
+      <label for="loginUsuario">Usuario</label>
+      <input id="loginUsuario" type="text" placeholder="Ej: admin o tec1" autocomplete="username" />
+    </div>
+
+    <div class="input-group">
+      <label for="loginPassword">Contraseña</label>
+      <input id="loginPassword" type="password" placeholder="Ingresá tu contraseña" autocomplete="current-password" />
+    </div>
+
+    <button class="login-btn" onclick="login()">Ingresar al sistema</button>
+
+    <div id="loginMsg" class="msg"></div>
+  </section>
+</main>
+
+  <main id="appView" class="app hidden">
+
+    <header class="topbar">
+      <div class="brand">
+        <img src="logo.jpg" alt="Logo" />
+        <div>
+          <h2>Caraguatay NET</h2>
+          <small>Sistema de Reclamos</small>
+        </div>
+      </div>
+
+      <div class="session">
+        <span id="userInfo"></span>
+        <button class="btn-light" onclick="logout()">Salir</button>
+      </div>
+    </header>
+
+    <section class="panel" id="formPanel">
+      <h3>Nuevo Reclamo</h3>
+
+      <div class="grid-form">
+        <input id="cliente" placeholder="Nombre del cliente" />
+        <input id="telefono" placeholder="Teléfono" />
+        <input id="ubicacion" placeholder="Ubicación" />
+        <input id="fecha" type="date" />
+        <input id="descripcion" placeholder="Descripción del reclamo" />
+        <button onclick="crearReclamo()">Guardar Reclamo</button>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat stat-click" onclick="abrirPendientes()">
+        <b id="countPendientes">0</b>
+        <span>Pendientes</span>
+      </div>
+
+      <div class="stat stat-click" onclick="abrirResueltos()">
+        <b id="countResueltos">0</b>
+        <span>Resueltos</span>
+      </div>
+
+      <div class="stat">
+        <b id="lastLogin">-</b>
+        <span>Último ingreso por</span>
+      </div>
+    </section>
+
+    <section class="lists">
+      <div class="list-card">
+        <h3>Pendientes</h3>
+        <div id="pendientesList" class="cards"></div>
+      </div>
+
+      <div class="list-card">
+        <h3>Resueltos</h3>
+        <div id="resueltosList" class="cards"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL ELIMINAR -->
+  <div id="modalEliminar" class="modal hidden">
+    <div class="modal-content modal-small">
+      <div class="modal-header">
+        <h3>Confirmar eliminación</h3>
+        <button class="modal-close" onclick="cerrarModalEliminar()">×</button>
+      </div>
+
+      <p>¿Seguro que querés eliminar este reclamo resuelto?</p>
+      <p class="muted">Esta acción solo puede hacerla el administrador.</p>
+
+      <div class="actions">
+        <button class="danger" onclick="confirmarEliminar()">Sí, eliminar</button>
+        <button class="btn-light" onclick="cerrarModalEliminar()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="modalSalir" class="modal hidden">
+  <div class="modal-content modal-small">
+    
+    <div class="modal-header">
+      <h3>Cerrar sesión</h3>
+      <button class="modal-close" onclick="cerrarModalSalir()">×</button>
+    </div>
+
+    <p>¿Seguro que querés salir del sistema?</p>
+    <p class="muted">Se cerrará tu sesión actual.</p>
+
+    <div class="actions">
+      <button class="danger" onclick="confirmarSalir()">Sí, salir</button>
+      <button class="btn-light" onclick="cerrarModalSalir()">Cancelar</button>
+    </div>
+
+  </div>
+</div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
