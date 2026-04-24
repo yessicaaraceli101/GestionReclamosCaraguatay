@@ -6,10 +6,25 @@ function setMsg(t){
   document.getElementById('loginMsg').textContent = t || '';
 }
 
-function fmtFecha(v){
-  return v ? new Date(v).toLocaleString('es-PY') : '-';
-}
+function fmtFecha(value){
+  if(!value) return '-';
 
+  let fechaTexto = String(value);
+
+  // Si Supabase devuelve sin zona horaria, le agregamos UTC
+  if(!fechaTexto.endsWith('Z') && !fechaTexto.includes('+')){
+    fechaTexto = fechaTexto + 'Z';
+  }
+
+  return new Date(fechaTexto).toLocaleString('es-PY', {
+    timeZone: 'America/Asuncion',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
 function cortoId(id){
   return String(id || '').slice(0, 8);
 }
